@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator | TypeScript</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../dist/style.css">
+</head>
+
+<body>
+    <!-- Calculator Container -->
+    <section class="w-3/4 h-3/4 bg-primary-bg-dark px-4 py-4 rounded-xl lg:w-1/4">
+        <!-- Calculator Screen -->
+        <div class="flex-1 h-1/4 flex flex-col justify-end items-end gap-2 px-4 py-8">
+            <!-- Formula -->
+            <span class="text-neutral-drk-white text-xl font-semibold" id="formula">
+            </span>
+
+            <!-- Result -->
+            <h2 class="text-neutral-lg-white text-5xl font-bold" id="result">
+            </h2>
+        </div>
+
+        <!-- Calculator Buttons -->
+        <div class="flex-1 h-3/4 bg-primary-bg-light grid grid-cols-4 grid-rows-5 gap-2 px-2 py-2 rounded-xl">
+            <!-- AC Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-green text-lg font-semibold rounded-xl" onclick="clearScreen()">
+                <i class="fa-solid fa-a"></i>
+                <i class="fa-solid fa-c"></i>
+            </button>
+
+            <!-- Del Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-green text-lg font-semibold rounded-xl" onclick="deleteLast()">
+                <i class="fa-solid fa-delete-left"></i>
+            </button>
+
+            <!-- Modulo Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-green text-lg font-semibold rounded-xl" onclick="appendValue('%')">
+                <i class="fa-solid fa-percent"></i>
+            </button>
+
+            <!-- Divide Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-orange text-lg font-semibold rounded-xl" onclick="appendValue('/')">
+                <i class="fa-solid fa-divide"></i>
+            </button>
+
+            <!-- 7 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('7')">
+                <i class="fa-solid fa-7"></i>
+            </button>
+
+            <!-- 8 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('8')">
+                <i class="fa-solid fa-8"></i>
+            </button>
+
+            <!-- 9 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('9')">
+                <i class="fa-solid fa-9"></i>
+            </button>
+
+
+            <!-- Multipy Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-orange text-lg font-semibold rounded-xl" onclick="appendValue('*')">
+                <i class="fa-solid fa-x"></i>
+            </button>
+
+
+            <!-- 4 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('4')">
+                <i class="fa-solid fa-4"></i>
+            </button>
+
+            <!-- 5 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('5')">
+                <i class="fa-solid fa-5"></i>
+            </button>
+
+            <!-- 6 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('6')">
+                <i class="fa-solid fa-6"></i>
+            </button>
+
+            <!-- Minus Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-orange text-lg font-semibold rounded-xl" onclick="appendValue('-')">
+                <i class="fa-solid fa-minus"></i>
+            </button>
+
+            <!-- 1 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('1')">
+                <i class="fa-solid fa-1"></i>
+            </button>
+
+            <!-- 2 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('2')">
+                <i class="fa-solid fa-2"></i>
+            </button>
+
+            <!-- 3 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('3')">
+                <i class="fa-solid fa-3"></i>
+            </button>
+
+            <!-- Add Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-accent-lg-orange text-lg font-semibold rounded-xl" onclick="appendValue('+')">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+
+            <!-- 0 Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-lg font-semibold rounded-xl" onclick="appendValue('0')">
+                <i class="fa-solid fa-0"></i>
+            </button>
+
+            <!-- Dot Button -->
+            <button class="bg-primary-bg-btn flex justify-center items-center text-neutral-lg-white text-xs font-semibold rounded-xl" onclick="appendValue('.')">
+                <i class="fa-solid fa-circle"></i>
+            </button>
+
+            <!-- Equals Button -->
+            <button class="bg-primary-bg-btn col-span-2 flex justify-center items-center text-accent-lg-green text-lg font-semibold rounded-xl" onclick="calculate()">
+                <i class="fa-solid fa-equals"></i>
+            </button>
+        </div>
+    </section>
+
+    <script src="../script/script.js"></script>
+</body>
+</html>
